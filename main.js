@@ -61,30 +61,90 @@ let toppingState = [
     }];
 
 let chosenToppingNamesState = [];
+let toppingsDiv = document.querySelector('.toppings__container');
+let toppingDivs = renderToppingDivs(toppingState, chosenToppingNamesState);
+toppingsDiv.append(...toppingDivs);
 
-function toppingOnClick(chosenToppingNamesState, name){
+let summaryListDiv = document.querySelector('.summaryList');
+let items = document.createElement('div');
+items.classList.add('items');
+
+let summaryItems = renderItems(toppingState, chosenToppingNamesState);
+summaryListDiv.append(...summaryItems);
+
+let summaryTotal = document.createElement('p');
+summaryTotal.classList.add('total');
+let totalDescription = document.createElement('span');
+totalDescription.innerHTML = 'Total :';
+let total = document.createElement('span');
+let totalAmount = 0;
+total.innerHTML = '$' +  totalAmount;
+summaryTotal.append(totalDescription, total);
+
+let spiltHr = document.createElement('hr');
+summaryListDiv.append(items,spiltHr,summaryTotal);
+
+
+function renderItems(toppings, chosenToppingNamesState){
+    function renderItem({name, price}){
+        const item = document.createElement('div');
+        item.classList.add('item');
+        if(chosenToppingNamesState.includes(name)){            
+            const itemName = document.createElement('span');
+            itemName.classList.add('item__name');
+            itemName.innerHTML = name;
+            const itemPrice = document.createElement('span');
+            itemPrice.classList.add('item__price');
+            itemPrice.innerHTML = '$' + price;
+            item.append(itemName, itemPrice);
+            item.classList.add('item');
+        }       
+        return item;
+    }    
+    return toppings.map(renderItem);    
+}
+
+
+
+
+
+
+function toppingOnClick(chosenToppingNamesState, {name, price}){
     let newChosenToppingNamesState = [];
     if(chosenToppingNamesState.includes(name)){
         newChosenToppingNamesState = chosenToppingNamesState.filter(toppingName => toppingName != name);
+        totalAmount = (totalAmount *1000 - price*1000)/1000;
+        console.log(totalAmount);
+
     }else{
         newChosenToppingNamesState = [...chosenToppingNamesState,name];
-
+        totalAmount = (totalAmount *1000 + price*1000)/1000;
+        console.log(totalAmount);
     }
-    let toppingsDiv = document.querySelector('.toppings__container');
-    toppingsDiv.innerHTML = null;
 
-    const toppingDivs = renderToppingDivs(toppingState, newChosenToppingNamesState);
-    toppingsDiv.append(...toppingDivs);    
+    toppingsDiv.innerHTML = null;
+    toppingDivs = renderToppingDivs(toppingState, newChosenToppingNamesState);
+    toppingsDiv.append(...toppingDivs); 
+    
+    
+    summaryListDiv.innerHTML = null;
+    summaryItems = renderItems(toppingState, newChosenToppingNamesState);
+    summaryListDiv.append(...summaryItems);
+
+    summaryTotal = document.createElement('p');
+    summaryTotal.classList.add('total');
+    totalDescription = document.createElement('span');
+    totalDescription.innerHTML = 'Total :';
+    total = document.createElement('span');
+    total.innerHTML = '$' +  totalAmount;
+    summaryTotal.append(totalDescription, total);
+
+    spiltHr = document.createElement('hr');
+    summaryListDiv.append(items,spiltHr,summaryTotal);
 }
 
-const toppingsDiv = document.querySelector('.toppings__container');
-const toppingDivs = renderToppingDivs(toppingState, chosenToppingNamesState);
-toppingsDiv.append(...toppingDivs);
-
-
-
 function renderToppingDivs(toppings, chosenToppingNamesState){
-    function renderToppingDiv({ name, srcImg}){
+    function renderToppingDiv({ name, srcImg, price}){
         const nameSpan = document.createElement('span');
         nameSpan.innerHTML = name;
         const toppingImg = document.createElement('img');
@@ -92,7 +152,7 @@ function renderToppingDivs(toppings, chosenToppingNamesState){
         toppingImg.alt = name;
 
         const toppingDiv = document.createElement('div');
-        toppingDiv.onclick = () => toppingOnClick(chosenToppingNamesState, name);
+        toppingDiv.onclick = () => toppingOnClick(chosenToppingNamesState, { name, price});
         toppingDiv.classList.add('topping');
 
         toppingDiv.append(toppingImg, nameSpan);
@@ -105,3 +165,4 @@ function renderToppingDivs(toppings, chosenToppingNamesState){
     }
     return toppings.map(renderToppingDiv);
 }
+
