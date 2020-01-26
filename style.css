@@ -22,6 +22,7 @@ h2 {
     grid-gap: 5px 60px;
 }
 .detail > label {
+    text-transform: uppercase;
     font-size: small;
     font-weight: bold;
     color: #6E7790;
@@ -62,19 +63,32 @@ h2 {
     grid-template-columns: auto 1fr;
     grid-gap: 20px;
     align-items: center;
+    cursor: pointer;
+    border: 5px solid transparent;
 }
+
+
 .size > img {
     --width: 100px;
     width: var(--width);
+}
+.small > img {
+    width: calc(var(--width) * 0.8)
+}
+.large > img {
+    width: calc(var(--width) * 1.2)
+}
+
+.size > img:hover {
     border: 5px solid silver;
     border-radius: 50%;
 }
-.size--small > img {
-    width: calc(var(--width) * 0.8)
+
+.size--active{
+    border: 5px solid silver;
+    border-radius: 50%;
 }
-.size--large > img {
-    width: calc(var(--width) * 1.2)
-}
+
 .toppings__container {
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -123,7 +137,6 @@ h2 {
 
 .item{
     font-size: 1rem;
-    margin-right: 80px;
     display: grid;
     grid-template-columns: 1fr auto;
 }

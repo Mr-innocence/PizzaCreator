@@ -1,4 +1,22 @@
 let state = {
+    pizzas: [
+        {
+            size: 'small', 
+            srcImg: 'src/assets/size.png',
+            price: 9.99,
+        },
+        {
+            size: 'medium', 
+            srcImg: 'src/assets/size.png',
+            price: 10.99,
+        },
+        {
+            size: 'large', 
+            srcImg: 'src/assets/size.png',
+            price: 11.99,
+        },
+    ],
+    selectedPizzaSize :'small',
     toppings: [
         {
             name : 'anchovy',
@@ -60,7 +78,8 @@ let state = {
             srcImg: 'src/assets/toppings/tomato.svg',
             price: 0.99,
         }],
-    selectedToppingNames: ['tomato']
+    selectedToppingNames: [],
+    totalPrice:9.99
 }
 
 
@@ -68,9 +87,11 @@ function renderPizzaCreator(){
     const pizzaCreator = document.createElement('div');
     pizzaCreator.classList.add('container');
 
+    const userSection = renderUserSection();
+    const sizeSection = renderSizeSection(state);
     const toppingSection = renderToppingSection(state);
     const summarySection = renderSummaySection(state);
 
-    pizzaCreator.append(toppingSection, summarySection);
+    pizzaCreator.append(userSection,sizeSection, toppingSection, summarySection);
     return pizzaCreator;
 }

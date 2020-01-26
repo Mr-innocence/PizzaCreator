@@ -3,20 +3,19 @@
     <span class="itme__price">9.99</span>
 </li> */}
 
-function renderItem(topping){
-    const { name, price } = topping;
-    const item = document.createElement('li');
-    item.classList.add('item');
+function renderSummarySize(pizza){
+    const { size, price } = pizza;
+    const sizeItem = document.createElement('li');
+    sizeItem.classList.add('item');
 
     const nameSpan = document.createElement('span');
     nameSpan.classList.add('item__name');
-    nameSpan.innerHTML = name;
+    nameSpan.innerHTML = size;
 
     const priceSpan = document.createElement('span');
     priceSpan.classList.add('item__price');
-    priceSpan.innerHTML = price;
+    priceSpan.innerHTML = '$' + price;
 
-    item.append(nameSpan, priceSpan);
-
-    return item;
+    sizeItem.append(nameSpan, priceSpan);
+    return sizeItem;    
 }

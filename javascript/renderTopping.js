@@ -1,6 +1,6 @@
 function onToppingDivClick(topping, actived){
-    const { name } = topping;
-    const { selectedToppingNames } = state;
+    const { name, price } = topping;
+    const { selectedToppingNames, totalPrice } = state;
     if(actived){
         deactivate();
         return;
@@ -8,20 +8,24 @@ function onToppingDivClick(topping, actived){
     activate();
     function activate(){
         const newSelectedToppingNames = [...selectedToppingNames, name];
+        const newTotalPrice = totalPrice + price;
         state = {
             ...state,
-            selectedToppingNames : [...newSelectedToppingNames]
+            selectedToppingNames : [...newSelectedToppingNames],
+            totalPrice : newTotalPrice,
         }
-        render()
+        render();
     }
 
     function deactivate(){
         const newSelectedToppingNames = selectedToppingNames.filter(toppingName => toppingName != name);
+        const newTotalPrice = totalPrice - price;
         state = {
             ...state,
-            selectedToppingNames : [...newSelectedToppingNames]
+            selectedToppingNames : [...newSelectedToppingNames],
+            totalPrice : newTotalPrice,
         }  
-        render() 
+        render(); 
     }
 }
 
@@ -42,6 +46,7 @@ function renderTopping(topping, actived){
     toppingDiv.onclick = () => onToppingDivClick(topping, actived);
     function setActive(toppingDiv){
         toppingDiv.classList.add('topping--active');
+        
     }
 
     if(actived){
