@@ -1,0 +1,48 @@
+{
+  "name": "pizza-creator",
+  "version": "1.0.0",
+  "description": "Several ways to develop a single page application: pizza creator",
+  "private": true,
+  "dependencies": {
+    "fast-json-stable-stringify": "^2.1.0",
+    "figgy-pudding": "^3.5.1",
+    "for-in": "^1.0.2",
+    "fs.realpath": "^1.0.0",
+    "get-value": "^2.0.6",
+    "graceful-fs": "^4.2.3",
+    "https-browserify": "^1.0.0",
+    "ieee754": "^1.1.13",
+    "iferr": "^0.1.5",
+    "imurmurhash": "^0.1.4",
+    "infer-owner": "^1.0.4",
+    "inherits": "^2.0.4",
+    "is-accessor-descriptor": "^0.1.6",
+    "is-binary-path": "^1.0.1",
+    "is-buffer": "^1.1.6",
+    "is-data-descriptor": "^0.1.4",
+    "is-descriptor": "^0.1.6",
+    "is-extendable": "^0.1.1",
+    "lodash": "^4.17.15",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mr-innocence/PizzaCreator.git"
+  },
+  "keywords": [
+    "declarative",
+    "imperative",
+    "react"
+  ],
+  "author": "bella li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mr-innocence/PizzaCreator/issues"
+  },
+  "homepage": "https://github.com/Mr-innocence/PizzaCreator#readme"
+}
